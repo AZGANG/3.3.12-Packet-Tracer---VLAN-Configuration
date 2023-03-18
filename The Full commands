@@ -1,0 +1,53 @@
+Part 1: Verify the Default VLAN Configuration
+do some pings 
+show vlan 
+
+Part 2: Configure VLANs
+
+on sw2 and 3 
+enable 
+config t
+
+vlan 10 
+name Faculty/Staff
+
+vlan 20 
+name Students 
+
+vlan 30
+name Guest(Default)
+
+vlan 99
+name Management&Native
+
+vlan 150 
+name VOICE
+
+do show vlan 
+
+Part 3: Assign VLANs to Ports sw2 sw3 just remove the cmd for  the voice on SW2
+int f0/11 
+switchport mode access 
+switchport access vlan 10 
+no shut 
+
+int f0/18 
+switchport mode access 
+switchport access vlan 20 
+no shut 
+
+int f0/6 
+switchport mode access 
+switchport access vlan 30 
+no shut 
+
+some networks need VOIP
+int f0/11
+mls qos trust cos 
+switchport voice vlan 150
+exit
+end
+
+check for loss of connectivity 
+show vlan brief 
+
